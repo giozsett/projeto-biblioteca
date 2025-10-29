@@ -1,0 +1,158 @@
+{% extends '_layouts.html' %}
+
+{% block content%}
+
+<html class="light dark" lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Administração da Biblioteca - Gerenciar Livros</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#000000", "background-light": "#f7f7f7", "background-dark": "#191919", "primary-blue": "#3B82F6", "accent-orange": "#F97316", "neutral-white": "#FFFFFF", "neutral-off-white": "#F8F9FA", "text-dark-gray": "#1F2937", "border-light-gray": "#E5E7EB", "status-green": "#10B981", "status-red": "#EF4444", "status-gray": "#6B7280"}, fontFamily: {display: "Work Sans"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-dark-gray dark:text-neutral-off-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+<!-- Barra de Navegação Superior -->
+
+<!-- Conteúdo Principal -->
+<div class="flex flex-1">
+<!-- Barra Lateral para Filtros -->
+<aside class="w-72 flex-shrink-0 border-r border-border-light-gray dark:border-gray-700 bg-neutral-white dark:bg-background-dark p-6">
+<div class="flex h-full min-h-[700px] flex-col justify-between">
+<div class="flex flex-col gap-8">
+<div>
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] mb-4 text-text-dark-gray dark:text-neutral-off-white">Filtrar por</h3>
+<div class="flex flex-col gap-6">
+<div>
+<label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2" for="genre">Gênero</label>
+<div class="space-y-2">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-gray-300 text-primary-blue focus:ring-primary-blue" id="genre-fiction" name="genre-fiction" type="checkbox"/>
+<label class="ml-3 text-sm text-gray-700 dark:text-gray-200" for="genre-fiction">Ficção</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-gray-300 text-primary-blue focus:ring-primary-blue" id="genre-nonfiction" name="genre-nonfiction" type="checkbox"/>
+<label class="ml-3 text-sm text-gray-700 dark:text-gray-200" for="genre-nonfiction">Não-Ficção</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-gray-300 text-primary-blue focus:ring-primary-blue" id="genre-scifi" name="genre-scifi" type="checkbox"/>
+<label class="ml-3 text-sm text-gray-700 dark:text-gray-200" for="genre-scifi">Ficção Científica</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-gray-300 text-primary-blue focus:ring-primary-blue" id="genre-fantasy" name="genre-fantasy" type="checkbox"/>
+<label class="ml-3 text-sm text-gray-700 dark:text-gray-200" for="genre-fantasy">Fantasia</label>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2" for="availability">Disponibilidade</label>
+<div class="space-y-2">
+<div class="flex items-center">
+<input checked="" class="h-4 w-4 border-gray-300 text-primary-blue focus:ring-primary-blue" id="avail-all" name="availability" type="radio"/>
+<label class="ml-3 block text-sm text-gray-700 dark:text-gray-200" for="avail-all">Todos</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 border-gray-300 text-primary-blue focus:ring-primary-blue" id="avail-available" name="availability" type="radio"/>
+<label class="ml-3 block text-sm text-gray-700 dark:text-gray-200" for="avail-available">Disponíveis</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 border-gray-300 text-primary-blue focus:ring-primary-blue" id="avail-checkedout" name="availability" type="radio"/>
+<label class="ml-3 block text-sm text-gray-700 dark:text-gray-200" for="avail-checkedout">Emprestados</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] mb-4 text-text-dark-gray dark:text-neutral-off-white">Ordenar por</h3>
+<select class="mt-1 block w-full rounded-lg border-border-light-gray dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-primary-blue focus:ring-primary-blue text-sm" id="sort-by" name="sort-by">
+<option>Título A-Z</option>
+<option>Título Z-A</option>
+<option>Data de Publicação (Mais Novo)</option>
+<option>Data de Publicação (Mais Antigo)</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<button class="w-full flex items-center justify-center rounded-lg h-10 bg-primary-blue text-white text-sm font-bold hover:bg-blue-700">Aplicar Filtros</button>
+<button class="w-full flex items-center justify-center rounded-lg h-10 bg-transparent text-gray-600 dark:text-gray-300 text-sm font-medium border border-border-light-gray dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">Resetar</button>
+</div>
+</div>
+</aside>
+<!-- Área Principal de Conteúdo -->
+<main class="flex-1 p-8 bg-background-light dark:bg-background-dark">
+<div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+<p class="text-text-dark-gray dark:text-neutral-off-white text-4xl font-black leading-tight tracking-[-0.033em]">Gerenciar Livros</p>
+<button class="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-accent-orange text-white text-sm font-bold hover:bg-orange-600">
+<span class="material-symbols-outlined !text-xl">add</span>
+Adicionar Novo Livro
+</button>
+</div>
+<!-- Barra de Pesquisa -->
+<div class="mb-6">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-neutral-white dark:bg-gray-800 border border-border-light-gray dark:border-gray-700">
+<div class="text-gray-400 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-dark-gray dark:text-neutral-off-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-gray-400 px-4 text-base font-normal leading-normal" placeholder="Buscar livros por título, autor..." value=""/>
+</div>
+</label>
+</div>
+<!-- Tabela de Livros -->
+<div class="bg-neutral-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden border border-border-light-gray dark:border-gray-700">
+<table class="min-w-full divide-y divide-border-light-gray dark:divide-gray-700">
+<thead class="bg-neutral-off-white dark:bg-gray-700/50">
+<tr>
+<th class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-text-dark-gray dark:text-gray-200 sm:pl-6" scope="col">Livro</th>
+<th class="px-3 py-3.5 text-left text-sm font-semibold text-text-dark-gray dark:text-gray-200" scope="col">Autor</th>
+<th class="px-3 py-3.5 text-left text-sm font-semibold text-text-dark-gray dark:text-gray-200" scope="col">Publicado</th>
+<th class="px-3 py-3.5 text-left text-sm font-semibold text-text-dark-gray dark:text-gray-200" scope="col">Status</th>
+<th class="relative py-3.5 pl-3 pr-4 sm:pr-6" scope="col">
+<span class="sr-only">Ação</span>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light-gray dark:divide-gray-700 bg-neutral-white dark:bg-gray-800">
+<!-- Itens da Lista aqui, traduzidos conforme necessário -->
+</tbody>
+</table>
+</div>
+<!-- Paginação -->
+<nav class="flex items-center justify-between border-t border-border-light-gray dark:border-gray-700 px-4 sm:px-0 mt-6 pt-6">
+<div class="flex flex-1 justify-between sm:hidden">
+<a class="relative inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700" href="#">Anterior</a>
+<a class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700" href="#">Próximo</a>
+</div>
+<div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-gray-700 dark:text-gray-300">
+Mostrando
+<span class="font-medium">1</span>
+até
+<span class="font-medium">10</span>
+de
+<span class="font-medium">150</span>
+resultados
+</p>
+</div>
+<div>
+<nav aria-label="Paginação" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<!-- botões de página traduzidos já -->
+</nav>
+</div>
+</div>
+</nav>
+</main>
+</div>
+</div>
+</body></html>
+{%endblock content%}

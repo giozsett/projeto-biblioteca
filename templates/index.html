@@ -1,26 +1,23 @@
 {% extends '_layouts.html' %}
 
 {% block content%}
- <!-- Dark mode toggle example -->
-<!-- <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 rounded-full hover:bg-soft-gray/20">
-                        <span class="material-symbols-outlined">dark_mode</span>
-                    </button> -->
+<html class="light-dark" lang="pt-br">
 <main class="flex-grow">
-<!-- Hero Section -->
+<!-- Seção Hero -->
 <section class="relative flex min-h-[480px] w-full items-center justify-center bg-cover bg-center py-16 md:py-24" style="background-image: linear-gradient(rgba(10, 36, 99, 0.7), rgba(10, 36, 99, 0.9)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&amp;w=2070&amp;auto=format&amp;fit=crop');">
 <div class="container mx-auto flex flex-col items-center gap-6 px-4 text-center">
-<h2 class="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl font-serif-display">Discover Your Next Story</h2>
-<p class="max-w-2xl text-lg text-gray-200">Search our extensive collection of books, articles, and media.</p>
+<h2 class="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl font-serif-display">Descubra Sua Próxima História</h2>
+<p class="max-w-2xl text-lg text-gray-200">Busque em nossa extensa coleção de livros, artigos e mídias.</p>
 <div class="w-full max-w-2xl mt-4">
 <label class="flex flex-col min-w-40 h-14 w-full">
 <div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-lg">
 <div class="text-primary flex border border-soft-gray bg-white items-center justify-center pl-4 rounded-l-lg border-r-0">
 <span class="material-symbols-outlined">search</span>
 </div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-light focus:outline-0 focus:ring-0 border border-soft-gray bg-white h-full placeholder:text-soft-gray px-4 border-r-0 border-l-0 text-base" placeholder="Search by Title, Author, ISBN..." value=""/>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-light focus:outline-0 focus:ring-0 border border-soft-gray bg-white h-full placeholder:text-soft-gray px-4 border-r-0 border-l-0 text-base" placeholder="Pesquisar por Título, Autor, ISBN..." value=""/>
 <div class="flex items-center justify-center rounded-r-lg border-l-0 border border-soft-gray bg-white pr-2">
 <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-5 bg-accent text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
-<span class="truncate">Search</span>
+<span class="truncate">Buscar</span>
 </button>
 </div>
 </div>
@@ -28,141 +25,100 @@
 </div>
 </div>
 </section>
-<!-- Book Discovery Section -->
+
+<!-- Seção de Descoberta de Livros -->
 <section class="container mx-auto py-10 md:py-16 px-4">
-<!-- New Arrivals Carousel -->
+<!-- Carrossel Novidades -->
 <div>
-<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-4">New Arrivals</h3>
+<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-4">Novidades</h3>
 <div class="flex overflow-x-auto pb-4 [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
 <div class="flex items-stretch gap-4 md:gap-6">
 <div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for The Midnight Library" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrkEua8Xn-FX09ZqNf_e0esjTYGndZv6G55UElF5Col-_qtkvNfqRgY-gdnPo4Q8bgXNPmOuJiA8j4nS25kSgnbTGKShRfrMfwaJoOMc2Tx4TyAKyDWey5JqkFzgxuSy6CY2ipoBU2xkR3Imnp5tYAC5fYGbdzgblC0fELwTS7PqkujENofC3lsVfJhN2BuV9V48HAn8NcJ90KpJA3pN-Ogl8Rb5LB0jXUFFxqlvprgX_cxryXqIDg_hlbdRFUuq_yI272QxaSKCI');"></div>
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro Metamorfose" style="background-image: url('https://m.media-amazon.com/images/I/715JOcuqSSL._AC_UF1000,1000_QL80_.jpg');"></div>
 <div>
-<p class="font-bold">The Midnight Library</p>
-<p class="text-sm text-soft-gray">Matt Haig</p>
+<p class="font-bold">A Metamorfose</p>
+<p class="text-sm text-soft-gray">Franz Kafka</p>
 </div>
 </div>
 <div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for Project Hail Mary" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJ8BGKOFdh4LX64n1Pvhe7JrZMMFKVvu9bxl4x1O8W2sKPkFzTlp1zXOFbu6UEh-cM9AHljlEcAVMO0Z2mC5dVE6ca4MSfkBmVO6ujSWB2N0P2Nn8mM-XpCe1Q1-87yg3axCLhvhHXN2P7pvYh76olI9DleV3gxpt1U0oOHks5od6ozjPB-wy5mZy8sdt8YQlLViCt2OHgsnoW5BnB5ZCP3gjb5T9b4h4oIgLXYh9EBB683IqJtlEqiecI-Pk-dBxUUASX2JC2fEM');"></div>
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro café tangerin" style="background-image: url('https://m.media-amazon.com/images/I/810wlHQ9F9L.jpg');"></div>
 <div>
-<p class="font-bold">Project Hail Mary</p>
-<p class="text-sm text-soft-gray">Andy Weir</p>
+<p class="font-bold">Café Tangerinn</p>
+<p class="text-sm text-soft-gray">Emanuela Anechoum</p>
 </div>
 </div>
 <div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for Klara and the Sun" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrnVLrO0mq5YQMOqNeb-6VvFhiy9k8FypYo2ILyXXTGnlorlGCwvmZ1ORTbCvxPLv5HQb99Q1FCh6XcCuzZfGNP8qfRV6l6Ltxx_cFusU66Plnym-lyzRpNsUwBn0PIay6iq0vY8ZdwDeT5v8_pa5mFWLzhRq-mPsPBJCvc5X9GFu9WMqBZE8XJGYllMrNtwSao3oo896obbctxiIXHgQcOtOk6R1ZoQ_VUlVSuus6_I0KNq-QgPzsWqODeJtiNI05S1XQXFoGQOU');"></div>
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro Clarice Lispector" style="background-image: url('https://m.media-amazon.com/images/I/81WXzsT86ZL._UF1000,1000_QL80_.jpg');"></div>
 <div>
-<p class="font-bold">Klara and the Sun</p>
-<p class="text-sm text-soft-gray">Kazuo Ishiguro</p>
+<p class="font-bold">A Hora da Estrela</p>
+<p class="text-sm text-soft-gray">Clarice Lispector</p>
 </div>
 </div>
 <div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for The Four Winds" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTlhe7G8dHhUOKMyNTNwqHfYyrYZM7ZKISXykJI_d4bWdtrYKPfneiNyX_774NHEY_j9DFOXfVXz80X5pSCCSN9zZL27BMEF6vhQGyEm7Yp8gZ4KxTlIYaZQSAP7ozxBpBQNMKngrYkRNXf3mb1GRy2NJuysQiPPAx8Y2lSyOQvX3MmzaTCRE8K7NNODd4tAvkNIAS0eCsgW3-83s8Bpnsi0lKM-nOwYBsaIbGjj1lzkV9JY9N4T6YNWZYFAJ2CsSCMh2wvd-moiM');"></div>
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro O Jantar Secreto" style="background-image: url('https://m.media-amazon.com/images/I/71AeB1+8dZL._UF1000,1000_QL80_.jpg');"></div>
 <div>
-<p class="font-bold">The Four Winds</p>
-<p class="text-sm text-soft-gray">Kristin Hannah</p>
+<p class="font-bold">O Jantar Secreto</p>
+<p class="text-sm text-soft-gray">Raphael Montes</p>
 </div>
 </div>
 <div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for Cloud Cuckoo Land" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHA6H_37KV5JwNFvRmO_bDFQviqe0PwdPj515xlSPE2XcU7BBrZX5Jgk3XUHhiqmTsPRkMz7JtAKpAua-gcLpqxOl8nf4nSg1P_6bypgcWxUfcibRO_AtCODbh0NO8b7uMN_iwzlvfAW_tKYTdGgZqzoOv_w09eYjatJe_EH_qVkZx-eboeQ2kmbPSJTjyjpz4H0hOM9sVXAvDT8MrqIx0OzVwLf8XXWXZm84juq3H2IKgbKfw4BE3pznkaS__5Wil_8V_Icl-Hp8');"></div>
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro Coreografia do Adeus" style="background-image: url('https://m.media-amazon.com/images/I/9157mzaUZ1L.jpg');"></div>
 <div>
-<p class="font-bold">Cloud Cuckoo Land</p>
-<p class="text-sm text-soft-gray">Anthony Doerr</p>
+<p class="font-bold">Pequena Coreografia do Adeus</p>
+<p class="text-sm text-soft-gray">Aline Bei</p>
 </div>
 </div>
 </div>
 </div>
 </div>
-<!-- Popular This Month Carousel -->
-<div class="mt-10">
-<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-4">Popular This Month</h3>
-<div class="flex overflow-x-auto pb-4 [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
-<div class="flex items-stretch gap-4 md:gap-6">
-<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for The Lincoln Highway" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDS-ZRXQoBKQYGWLQ2J2oqKLSJMgNeCpDZTppSytnu3zvO1JZ99calt9BYnJ9VH2f6tr_3NyLkn1_F2-Q8v5-5iOJTZwjrBDm14C_fMl3xLw9GVewoI_GfRD7PUvDw5JLyDPNjnYZA2hIHxUHM9WevGIfo7fA_8QQPtSRH-rgTKGvK6uuEGkaOMY5t6LmUO4899dXYDTNU_25LpxmuDYXaXR45rexHVaNm8ZjFPpb8W883XW7tXHwVl3CAxUGyGSMo4VWTudWjbZJU');"></div>
-<div>
-<p class="font-bold">The Lincoln Highway</p>
-<p class="text-sm text-soft-gray">Amor Towles</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for Crying in H Mart" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpGLvqcfy_okh1waD4q1DBS884s3x7ZpLoxOWaTOkxW1fXWSLjBb5m0GEGKctPmktDFG8QeWrc0NY0Fny8To8DE9c0f2fz-rGPeRqilQjjGX10dhprxGuttdmCEG94kPUCgcy9hds766GrMRfWz7gqLheBI6fxrXGmN2N1HhTU5aSrqGfmhVIpwFmfKpvkmas7jhoLFCe-0errIpExYPbfqLIGfJ3syc7ZA-eNUm4O8WzkorJjKvRg7AA0eF_qd8LEhn9lN9P8Ii0');"></div>
-<div>
-<p class="font-bold">Crying in H Mart</p>
-<p class="text-sm text-soft-gray">Michelle Zauner</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for Beautiful World, Where Are You" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnUewOCaok4CPckQDxW7tu6ZVzN5DVT9i5YPaK98vVwieLkT89N5UPpFQqcIY_7vxg4J0OnMOc8r6AHySvr8tHRt1NsUG4M20ARbZndO6_k-jjmgoS-LYjPW9Z3KqR5aYJnZDvdporlnHjEH0aMBR8NrKjIMCDjIpoOP7qhN8qIexDXxUknrVvgObQ5GQOrb9jKnTkM8m8XXvPFrP_mOSlPSPVQHj-4Uvd8u8Ibhf2H05UJAHm_RROnq43H3DqoOqNVaBESmsM7R8');"></div>
-<div>
-<p class="font-bold">Beautiful World...</p>
-<p class="text-sm text-soft-gray">Sally Rooney</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for The Midnight Library" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZK_dLYWr9UiTdxP8PEwCV-QmnRf1KY0CtJEndZLSf2UgGGxFXe7RZ3X2VViIJd1S37BCWVGa7EJ_iR1ymtSg2q_NxCIDzydt-nqytXwf-bhI68wgQT-UofYWXZwTNYGtq_NGBD-KdCnyWn9NEb0zjwg6rS-zRzTD8_GHsvv8z_O7sc9nlLkValRFgvcF1WpB5TdakBVqmAnGF3yfTl2swfZ1K0hPePCn-DUXFPJ3HyjzJs8IhC2ePJo5_Hhhzygj9vVgLN0V7thQ');"></div>
-<div>
-<p class="font-bold">The Midnight Library</p>
-<p class="text-sm text-soft-gray">Matt Haig</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
-<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Book cover for Project Hail Mary" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUlL4M5lTKlv2i4QlkcaCROc7ypn2jcfY6oDI7DlbLTX68jg7ShpktUUR2-jc99hIVdd3wNdlTRU24RZ4SgkF-ctdRJ3GpHcs6FgO-ADVcOt9XQ4Z6EoKzYHI6rnaMVXKGgYzh24OtWREaKt72EGAY6anF6Brk5ePr0G015tD7K6rU44utUe96Tpy3tt7iabCBm8wc7g1PCPG8u9qhGKMx0cvAMB-J8NJN6TxADHBWKa3dAS5PIktdUtOs8l9xiDFENKRHiSl80Pg');"></div>
-<div>
-<p class="font-bold">Project Hail Mary</p>
-<p class="text-sm text-soft-gray">Andy Weir</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Library Information Section -->
+
+<!-- Seção Informações da Biblioteca -->
 <section class="bg-primary/5 dark:bg-primary/10 py-10 md:py-16">
 <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-<!-- Left Column: News & Events -->
+<!-- Coluna Esquerda: Notícias e Eventos -->
 <div class="lg:col-span-2">
-<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-6">Library News &amp; Events</h3>
+<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-6">Notícias & Eventos da Biblioteca</h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<!-- News Card 1 -->
+<!-- Card de Notícia 1 -->
 <div class="bg-background-light dark:bg-background-dark rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-<img alt="A colorful book fair" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJK3RMoZzyoBWY4u28imW3xRq7TQzZjl196fRJgL2gMFruqKNRW3Cf8Doja4m55OGDtKuyjlw4sm4rMsxutrzJjCxP-dSU3aZV1j2TX_F11dE8YUyo-sMejxrH89zzsW_0ikfoU_oPZ1NX2NnxnJsy9TqN8shBLRDwH1lZZoOwCMpfqaLOtSv5kVD-fFqbFNcD99Rsd4oC8ZaYq9ox6hT5gE5sFiwU_J_Gw0RGEoD_-IDGsFeg16JHfWDIuZZcZXZKQv7MGv-AQHM"/>
+<img alt="Feira de livros colorida" class="w-full h-48 object-cover" src="https://www.furg.br/arquivos/29-04-2025-Feira-do-Livro-FURG-2020.jpg"/>
 <div class="p-4">
-<p class="text-xs text-soft-gray mb-1">October 28, 2023</p>
-<h4 class="font-bold text-lg mb-2">Annual Book Fair Returns!</h4>
-<p class="text-sm text-soft-gray">Join us for a week of literary celebration, guest authors, and exclusive discounts...</p>
+<p class="text-xs text-soft-gray mb-1">28 de Outubro de 2025</p>
+<h4 class="font-bold text-lg mb-2">A Feira Anual de Livros Retorna!</h4>
+<p class="text-sm text-soft-gray">Participe de uma semana de celebração literária, autores convidados e descontos exclusivos...</p>
 </div>
 </div>
-<!-- News Card 2 -->
+<!-- Card de Notícia 2 -->
 <div class="bg-background-light dark:bg-background-dark rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-<img alt="Children learning on computers in the library" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrXxuZAb8Nw1Lqc8HuXwZgcryhBx7jew031r85KKp4rJ_QgVSyV8eYaexhpJdM8Uhs4N15sMvmtNJGKeBlygAZjIc0rqgSIfrv8heaquym9KBBA9iiLPnV4zWtkm2fKzkIfzOrz7lx_GZG0etavAiDI39ncdhw-hW5zkfWHXWTG5OjDXipfeH3lMGLxjWkrIad9r242CzGrcfXwpwkoI60gJUY6cIJOW2mLlBPkqGCdmVo3EzRvnGGtNnD8p7bWiCu85E9ZEvWaIE"/>
+<img alt="Crianças aprendendo em computadores na biblioteca" class="w-full h-48 object-cover" src="https://www.gov.br/mec/pt-br/assuntos/noticias/2025/junho/workshop-aborda-educacao-digital-e-midiatica-com-europeus/workshop-aborda-educacao-digital-e-midiatica-com-europeus-1/@@images/6861f948-08f2-44a7-8ee9-36dfccd45745.jpeg"/>
 <div class="p-4">
-<p class="text-xs text-soft-gray mb-1">October 25, 2023</p>
-<h4 class="font-bold text-lg mb-2">New Digital Literacy Workshop</h4>
-<p class="text-sm text-soft-gray">We're excited to launch a new series of workshops aimed at improving digital skills for all ages...</p>
+<p class="text-xs text-soft-gray mb-1">25 de Outubro de 2025</p>
+<h4 class="font-bold text-lg mb-2">Novo Workshop de Alfabetização Digital</h4>
+<p class="text-sm text-soft-gray">Estamos animados em lançar uma nova série de workshops voltados para melhorar habilidades digitais para todas as idades...</p>
 </div>
 </div>
 </div>
 </div>
-<!-- Right Column: Quick Links -->
+
+<!-- Coluna Direita: Links Rápidos -->
 <div>
-<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-6">Quick Links</h3>
+<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-6">Links Rápidos</h3>
 <div class="flex flex-col gap-3">
 <a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
 <span class="material-symbols-outlined text-accent">menu_book</span>
-<span class="font-medium">View My Loans</span>
+<span class="font-medium">Ver Meus Empréstimos</span>
 </a>
 <a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
 <span class="material-symbols-outlined text-accent">desktop_windows</span>
-<span class="font-medium">Reserve a PC</span>
+<span class="font-medium">Reservar um PC</span>
 </a>
 <a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
 <span class="material-symbols-outlined text-accent">local_shipping</span>
-<span class="font-medium">Inter-Library Loan</span>
+<span class="font-medium">Empréstimo entre Bibliotecas</span>
 </a>
 <a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
 <span class="material-symbols-outlined text-accent">support_agent</span>
-<span class="font-medium">Ask a Librarian</span>
+<span class="font-medium">Pergunte a um Bibliotecário</span>
 </a>
 </div>
 </div>
@@ -170,29 +126,29 @@
 </section>
 </main>
 
-<!-- Footer -->
+<!-- Rodapé -->
 <footer class="bg-primary dark:bg-gray-900 text-white mt-auto w-full">
   <div class="container mx-auto px-4 py-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
       <div>
-        <h4 class="font-bold text-lg mb-2 font-serif-display">City Library</h4>
-        <p class="text-sm text-gray-300">123 Knowledge Ave,<br/>Bookville, BK 12345</p>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Biblioteca Municipal</h4>
+        <p class="text-sm text-gray-300">Rua do Conhecimento, 123,<br/>Bookville, BK 12345</p>
       </div>
       <div>
-        <h4 class="font-bold text-lg mb-2 font-serif-display">Operating Hours</h4>
-        <p class="text-sm text-gray-300">Mon - Fri: 9am - 8pm<br/>Sat - Sun: 10am - 5pm</p>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Horário de Funcionamento</h4>
+        <p class="text-sm text-gray-300">Seg - Sex: 9h - 20h<br/>Sáb - Dom: 10h - 17h</p>
       </div>
       <div>
-        <h4 class="font-bold text-lg mb-2 font-serif-display">Contact Us</h4>
-        <p class="text-sm text-gray-300">Email: contact@citylibrary.com<br/>Phone: (123) 456-7890</p>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Contato</h4>
+        <p class="text-sm text-gray-300">Email: contato@bibliotecamunicipal.com<br/>Telefone: (123) 456-7890</p>
       </div>
     </div>
 
     <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
-      <p>© 2023 City Library. All Rights Reserved. | <a class="hover:text-accent" href="#">Privacy Policy</a></p>
+      <p>© 2025 Biblioteca Municipal. Todos os direitos reservados. | <a class="hover:text-accent" href="#">Política de Privacidade</a></p>
     </div>
   </div>
 </footer>
 
-</div>
+</div></html>
 {% endblock content%}
