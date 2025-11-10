@@ -1,30 +1,30 @@
 import mysql.connector
-import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-def conectar():
+def get_conexao():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="sua_senha",
-        database="meu_banco"
+        host='localhost',
+        user='root',
+        password='root',
+        database='sistemabiblioteca'
     )
 
-def executar_sql(arquivo, parametros=None, fetch=False):
-    caminho = os.path.join(BASE_DIR, "scripts", arquivo)
-    with open(caminho, "r", encoding="utf-8") as f:
-        sql = f.read()
-    
-    conexao = conectar()
+def executar_procedure(nome_procedure, params=None):
+    conexao = get_conexao()
     cursor = conexao.cursor()
-    cursor.execute(sql, parametros or ())
-    
-    if fetch:
-        resultado = cursor.fetchall()
-    else:
-        resultado = None
+    try:
+        cursor.callproc(nome_procedure, params or [])
+        resultados = []
+        # Aqui pegamos todos os resultados retornados pela procedure
+        for result in cursor.stored_results():
+            resultados.extend(result.fetchall())
         conexao.commit()
-    
-    conexao.close()
-    return resultado
+        return resultados
+    except Exception as e:
+        print(f"Erro ao executar {nome_procedure}: {e}")
+        raise
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+

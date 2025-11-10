@@ -1,17 +1,17 @@
 {% extends '_layouts.html' %}
 
-{% block content%}
+{% block content %}
 <!DOCTYPE html>
-
-<html class="light dark" lang="pt"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Adicionar Novo Item ao Catálogo</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#000000", "background-light": "#f7f7f7", "background-dark": "#191919"}, fontFamily: {display: "Work Sans"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
-<style>
+<html class="light dark" lang="pt">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Adicionar Novo Item ao Catálogo</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#000000", "background-light": "#f7f7f7", "background-dark": "#191919"}, fontFamily: {display: "Work Sans"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+    <style>
         .material-symbols-outlined {
             font-variation-settings:
                 'FILL' 0,
@@ -19,144 +19,84 @@
                 'GRAD' 0,
                 'opsz' 24
         }
-</style>
+    </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
 <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
-<!-- TopNavBar -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-6 md:px-10 py-3 bg-white dark:bg-slate-900/50">
-<div class="flex items-center gap-4 text-slate-900 dark:text-white">
-<div class="size-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
-</svg>
+    <div class="layout-container flex h-full grow flex-col">
+        <!-- Conteúdo Principal -->
+        <main class="flex flex-1 justify-center p-4 sm:p-6 md:p-10">
+            <div class="layout-content-container flex flex-col w-full max-w-4xl flex-1">
+                <!-- Título da Página -->
+                <div class="flex flex-wrap justify-between gap-3 pb-8">
+                    <div class="flex min-w-72 flex-col gap-2">
+                        <h1 class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Adicionar Novo Item ao Catálogo</h1>
+                                    {% if messages %}
+                                    <div class="mb-4">
+                                        {% for message in messages %}
+                                            <div class="{% if message.tags == 'error' %}bg-red-100 border border-red-400 text-red-700{% elif message.tags == 'success' %}bg-green-100 border border-green-400 text-green-700{% else %}bg-blue-100 border border-blue-400 text-blue-700{% endif %} px-4 py-3 rounded relative" role="alert">
+                                                <span class="block sm:inline">{{ message }}</span>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <div class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8">
+                    <form method="POST" class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
+                        {% csrf_token %}
+                        <!-- Título -->
+                        <div class="lg:col-span-2">
+                            <label class="flex flex-col">
+                                <p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Título</p>
+                                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" placeholder="Digite o título do livro" name="titulo" value="{{ request.POST.titulo }}"/>
+                            </label>
+                        </div>
+                        <!-- Autor -->
+                        <div class="lg:col-span-2">
+                            <label class="flex flex-col">
+                                <p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Autor(es)</p>
+                                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" placeholder="Digite o nome do autor" name="autor" value="{{ request.POST.autor }}"/>
+                            </label>
+                        </div>
+                        <!-- Quantidade -->
+                        <div class="lg:col-span-2">
+                            <label class="flex flex-col">
+                                <p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Quantidade Total</p>
+                                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" type="number" name="quantidade" value="{{ request.POST.quantidade }}"/>
+                            </label>
+                        </div>
+                        <!-- Quantidade Disponível -->
+                        <div class="lg:col-span-2">
+                            <label class="flex flex-col">
+                                <p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Quantidade Disponível</p>
+                                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" type="number" name="quant_disponivel" value="{{ request.POST.quant_disponivel }}"/>
+                            </label>
+                        </div>
+                        <!-- Categoria -->
+                        <div class="lg:col-span-2">
+                            <label class="flex flex-col">
+                                <p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Categoria</p>
+                                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" name="categoria" value="{{ request.POST.categoria }}"/>
+                            </label>
+                        </div>
+                        
+                        <!-- Botões de Ação -->
+                        <div class="lg:col-span-2 flex justify-end items-center gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+                            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-slate-300 dark:hover:bg-slate-600" type="button">
+                                <a class="nav-link" href="{% url 'catalogo' %}">Cancelar</a>
+                            </button>
+                            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90" type="submit">
+                                <span class="truncate">Salvar no Catálogo</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
-<h2 class="text-lg font-bold tracking-[-0.015em]">Catálogo da Biblioteca</h2>
-</div>
-</button>
-</header>
-<!-- Conteúdo Principal -->
-<main class="flex flex-1 justify-center p-4 sm:p-6 md:p-10">
-<div class="layout-content-container flex flex-col w-full max-w-4xl flex-1">
-<!-- Título da Página -->
-<div class="flex flex-wrap justify-between gap-3 pb-8">
-<div class="flex min-w-72 flex-col gap-2">
-<h1 class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Adicionar Novo Item ao Catálogo</h1>
-<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Preencha os detalhes abaixo para adicionar um novo livro ou item à coleção da biblioteca.</p>
-</div>
-</div>
-<!-- Formulário -->
-<div class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8">
-<form class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
-<!-- Seção Informações Básicas -->
-<div class="lg:col-span-2">
-<h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Informações Básicas</h3>
-</div>
-<!-- Título -->
-<div class="lg:col-span-2">
-<label class="flex flex-col">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Título</p>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" placeholder="Digite o título do livro" value=""/>
-</label>
-</div>
-<!-- Autor(es) -->
-<div class="lg:col-span-2">
-<label class="flex flex-col">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Autor(es)</p>
-<div class="flex items-center flex-wrap gap-2 p-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-<span class="flex items-center gap-1.5 bg-primary/20 text-primary-800 dark:text-primary-200 rounded-full px-3 py-1 text-sm font-medium">
-                                            J.R.R. Tolkien
-                                            <button class="text-primary-800 dark:text-primary-200 hover:text-primary-900 dark:hover:text-primary-100" type="button">
-<span class="material-symbols-outlined !text-base">close</span>
-</button>
-</span>
-<input class="form-input flex-1 min-w-[150px] bg-transparent border-0 focus:outline-none focus:ring-0 p-1.5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-base" placeholder="Adicionar outro autor..." value=""/>
-</div>
-</label>
-</div>
-<!-- ISBN e Ano de Publicação -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 lg:col-span-2">
-<div>
-<label class="flex flex-col min-w-40 flex-1">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">ISBN</p>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" placeholder="Digite o ISBN de 13 dígitos" value=""/>
-</label>
-</div>
-<div>
-<label class="flex flex-col min-w-40 flex-1">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Ano de Publicação</p>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" placeholder="Ex: 2023" value=""/>
-</label>
-</div>
-</div>
-<!-- Seção Categoria e Detalhes -->
-<div class="lg:col-span-2 mt-4">
-<h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Categoria &amp; Detalhes</h3>
-</div>
-<!-- Gênero e Número de Cópias -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 lg:col-span-2">
-<div>
-<label class="flex flex-col">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Gênero / Categoria</p>
-<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 px-[15px] text-base font-normal leading-normal">
-<option>Selecione um gênero...</option>
-<option>Fantasia</option>
-<option>Ficção Científica</option>
-<option>Mistério</option>
-<option>Não-Ficção</option>
-<option>Biografia</option>
-</select>
-</label>
-</div>
-<div>
-<label class="flex flex-col">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Número de Cópias</p>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" placeholder="Ex: 5" type="number" value="1"/>
-</label>
-</div>
-</div>
-<!-- Descrição -->
-<div class="lg:col-span-2">
-<label class="flex flex-col">
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Descrição / Sinopse</p>
-<textarea class="form-textarea flex w-full min-w-0 flex-1 resize-y overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus:border-primary dark:focus:border-primary min-h-32 placeholder:text-slate-400 dark:placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal" placeholder="Forneça um resumo breve do item..."></textarea>
-</label>
-</div>
-<!-- Seção Estoque & Mídia -->
-<div class="lg:col-span-2 mt-4">
-<h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Estoque &amp; Mídia</h3>
-</div>
-<!-- Upload de Capa -->
-<div class="lg:col-span-2">
-<label>
-<p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal pb-2">Imagem da Capa</p>
-<div class="flex justify-center items-center w-full">
-<div class="flex flex-col items-center justify-center w-full h-48 border-2 border-slate-300 dark:border-slate-700 border-dashed rounded-lg cursor-pointer bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800">
-<div class="flex flex-col items-center justify-center pt-5 pb-6">
-<span class="material-symbols-outlined text-4xl text-slate-400 dark:text-slate-500">cloud_upload</span>
-<p class="mb-2 text-sm text-slate-500 dark:text-slate-400"><span class="font-semibold">Clique para enviar</span> ou arraste e solte</p>
-<p class="text-xs text-slate-500 dark:text-slate-400">PNG, JPG ou GIF (MAX. 800x400px)</p>
-</div>
-<input class="hidden" id="dropzone-file" type="file"/>
-</div>
-</div>
-</label>
-</div>
-<!-- Botões de Ação -->
-<div class="lg:col-span-2 flex justify-end items-center gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-slate-300 dark:hover:bg-slate-600" type="button">
-<a class="nav-link" href="{% url 'index' %}">Cancelar<a>
-</button>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90" type="submit">
-<span class="truncate">Salvar no Catálogo</span>
-</button>
-</div>
-</form>
-</div>
-</div>
-</main>
-</div>
-</div>
-</body></html>
-{% endblock content%}
+</body>
+</html>
+{% endblock content %}

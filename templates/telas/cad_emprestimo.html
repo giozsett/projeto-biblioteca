@@ -1,0 +1,103 @@
+{% extends '_layouts.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastrar Empréstimo</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { primary: "#000000" },
+                    fontFamily: { display: ["Work Sans"] }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+    <main class="flex flex-1 justify-center p-6 md:p-10">
+        <div class="w-full max-w-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-md">
+            <h1 class="text-3xl font-bold mb-2 text-slate-900 dark:text-white">Cadastrar Empréstimo</h1>
+            {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="{% if message.tags == 'error' %}bg-red-100 border border-red-400 text-red-700{% elif message.tags == 'success' %}bg-green-100 border border-green-400 text-green-700{% else %}bg-blue-100 border border-blue-400 text-blue-700{% endif %} px-4 py-3 rounded relative" role="alert">
+                        <span class="block sm:inline">{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+            <form method="POST" class="grid grid-cols-1 gap-y-6">
+                {% csrf_token %}
+
+                <!-- Data do Empréstimo -->
+                <div>
+                    <label class="block text-base font-medium pb-2">Data do Empréstimo</label>
+                    <input 
+                        type="date"
+                        name="data_emprestimo"
+                        value="{{ request.POST.data_emprestimo }}"
+                        class="form-input w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-primary/50 p-3 text-slate-900 dark:text-white"
+                        required
+                    />
+                </div>
+
+                <!-- Usuário -->
+                <div>
+                    <label class="block text-base font-medium pb-2">Usuário</label>
+                    <select 
+                        name="id_usuario"
+                        class="form-select w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-primary/50 p-3 text-slate-900 dark:text-white"
+                        required
+                    >
+                        <option value="">Selecione um usuário</option>
+                        {% for usuario in usuarios %}
+                            <option value="{{ usuario.id }}">{{ usuario.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Livro -->
+                <div>
+                    <label class="block text-base font-medium pb-2">Livro</label>
+                    <select 
+                        name="id_livro"
+                        class="form-select w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-primary/50 p-3 text-slate-900 dark:text-white"
+                        required
+                    >
+                        <option value="">Selecione um livro</option>
+                        {% for livro in livros %}
+                            <option value="{{ livro.id }}">{{ livro.titulo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Botões -->
+                <div class="flex justify-end gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <a href="{% url 'home' %}" 
+                       class="h-12 px-6 flex items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold hover:bg-slate-300 dark:hover:bg-slate-600">
+                       Cancelar
+                    </a>
+                    <button 
+                        type="submit"
+                        class="h-12 px-6 rounded-lg bg-primary text-white font-bold hover:bg-primary/90">
+                        Salvar Empréstimo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>
+{% endblock content %}

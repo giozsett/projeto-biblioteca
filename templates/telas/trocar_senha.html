@@ -1,0 +1,130 @@
+{% extends '_layouts.html' %}
+
+{% block content %}
+<html class="light dark" lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trocar Senha | Biblioteca Digital</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              "background-light": "#f7f7f7",
+              "background-dark": "#191919",
+            },
+            fontFamily: { display: "Work Sans" },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="font-display">
+    <div
+      class="relative flex min-h-screen w-full flex-col items-center bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-200"
+    >
+      <main class="flex w-full flex-1 flex-col items-center justify-center p-0">
+        <div class="w-full max-w-lg space-y-6 py-4">
+          <div class="flex flex-col gap-3 text-center">
+            <p class="text-4xl font-black leading-tight tracking-[-0.033em]">
+              Alterar Senha
+            </p>
+          </div>
+
+          {% if messages %}
+          <div class="mb-4">
+            {% for message in messages %}
+            <p
+              class="text-center font-medium {% if message.tags == 'success' %}text-green-600{% else %}text-red-500{% endif %}"
+            >
+              {{ message }}
+            </p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div
+            class="w-full rounded-xl bg-white dark:bg-background-dark dark:border dark:border-slate-800 p-4 shadow-sm"
+          >
+            <form method="post" action="{% url 'trocar_senha' %}" class="flex flex-col gap-6">
+              {% csrf_token %}
+
+              <div class="flex flex-col">
+                <label class="text-base font-medium pb-2" for="senha_atual">Senha Atual</label>
+                <input
+                  name="senha_atual"
+                  id="senha_atual"
+                  placeholder="Digite sua senha atual"
+                  type="password"
+                  class="form-input w-full rounded-lg border border-slate-300 bg-background-light h-14 p-4"
+                  required
+                />
+              </div>
+
+              <div class="flex flex-col">
+                <label class="text-base font-medium pb-2" for="senha_nova">Nova Senha</label>
+                <input
+                  name="senha_nova"
+                  id="senha_nova"
+                  placeholder="Digite a nova senha"
+                  type="password"
+                  class="form-input w-full rounded-lg border border-slate-300 bg-background-light h-14 p-4"
+                  required
+                />
+              </div>
+
+              <div class="flex flex-col">
+                <label class="text-base font-medium pb-2" for="senha_confirma">Confirmar Nova Senha</label>
+                <input
+                  name="senha_confirma"
+                  id="senha_confirma"
+                  placeholder="Confirme a nova senha"
+                  type="password"
+                  class="form-input w-full rounded-lg border border-slate-300 bg-background-light h-14 p-4"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="w-full h-14 bg-primary text-slate-50 font-bold rounded-lg hover:bg-primary/90"
+              >
+                Alterar Senha
+              </button>
+
+              <a
+                href="{% url 'home' %}"
+                class="w-full h-14 flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 mt-2 hover:bg-slate-100 dark:hover:bg-slate-800"
+              >
+                Cancelar
+              </a>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+{% endblock content %}
+

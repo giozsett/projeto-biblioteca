@@ -16,13 +16,14 @@
     </div>
     <div class="hidden md:flex flex-1 justify-end gap-8">
     <div class="flex items-center gap-9">
-    <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="{% url 'index'%}">Início</a>
+    <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="{% url 'home'%}">Início</a>
     <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="{% url 'catalogo' %}">Catálogo</a>
-    <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="{% url 'cad_livro'%}">Livros</a>
-    <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">Sobre</a>
+    <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="{% url 'emprestimos'%}">Empréstimos</a>
+    <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="{% url 'sobre' %}">Sobre</a>
+    <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="{% url 'trocar_senha' %}">Alterar Senha</a>
     </div>
     <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
-    <a class="nav-link" href="{% url 'login' %}"><i class="bi bi-box-arrow-right" ></i> Login</a>
+    <a class="nav-link" href="{% url 'login' %}"><i class="bi bi-box-arrow-right" ></i> Sair</a>
     </button>
     </div>
     <button class="md:hidden p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800">

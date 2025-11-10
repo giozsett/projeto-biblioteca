@@ -1,0 +1,117 @@
+{% extends '_layouts.html' %}
+
+{% block content %}
+
+<html class="dark" lang="pt">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Administração da Biblioteca - Gerenciar Empréstimos</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                        "primary-blue": "#3B82F6",
+                        "accent-orange": "#F97316",
+                        "neutral-white": "#FFFFFF",
+                        "neutral-off-white": "#F8F9FA",
+                        "text-dark-gray": "#1F2937",
+                        "border-light-gray": "#E5E7EB",
+                        "status-green": "#10B981",
+                        "status-red": "#EF4444",
+                        "status-gray": "#6B7280"
+                    },
+                    fontFamily: {
+                        display: "Work Sans"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-dark text-neutral-off-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+    <main class="flex-1 p-8 bg-background-dark">
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+            <p class="text-neutral-off-white text-4xl font-black leading-tight tracking-[-0.033em]">Gerenciar Empréstimos</p>
+
+            <button class="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-accent-orange text-white text-sm font-bold hover:bg-orange-600 ml-auto">
+                <span class="material-symbols-outlined !text-xl">add</span>
+                <a href="{% url 'cad_emprestimo' %}" class="text-white">Novo Empréstimo</a>
+            </button>
+        </div>
+
+        <!-- Tabela de Empréstimos -->
+        <div class="bg-gray-800 rounded-xl shadow-sm overflow-hidden border border-gray-700">
+            <table class="min-w-full divide-y divide-gray-700">
+                <thead class="bg-gray-700/50">
+                    <tr>
+                        <th class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-200 sm:pl-6">Livro</th>
+                        <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">Usuário</th>
+                        <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">Data do Empréstimo</th>
+                        <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">Data de Devolução</th>
+                        <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody class="divide-y divide-gray-700 bg-gray-800">
+                    {% for emprestimo in emprestimos %}
+                        <tr>
+                            <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-200">{{ emprestimo.1 }}</td> <!-- Livro -->
+                            <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-300">{{ emprestimo.2 }}</td> <!-- Usuário -->
+                            <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-400">{{ emprestimo.3|date:"d/m/Y" }}</td> <!-- Data empréstimo -->
+                            <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-400">
+                                {% if emprestimo.4 %}
+                                    {{ emprestimo.4|date:"d/m/Y" }}
+                                {% else %}
+                                    <span class="text-status-red">Pendente</span>
+                                {% endif %}
+                            </td>
+
+                            <td class="px-3 py-4 whitespace-nowrap text-sm text-right space-x-3">
+                                
+                                {% if not emprestimo.4 %}
+                                <a href="{% url 'cad_devolucao' emprestimo.0%}" class="text-green-400 hover:text-green-300">Cadastrar Devolução</a>
+                                {% endif %}
+                                <a href="{% url 'editar_emprestimo' emprestimo.0 %}" class="text-blue-400 hover:text-blue-300">Editar</a>
+                                <a href="{% url 'excluir_emprestimo' emprestimo.0 %}" class="text-red-400 hover:text-red-300">Excluir</a>
+                                
+
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-gray-400">Nenhum empréstimo encontrado</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>
+
+{% endblock content %}

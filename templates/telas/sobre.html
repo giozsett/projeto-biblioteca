@@ -1,0 +1,114 @@
+{% extends '_layouts.html' %}
+
+{% block content %}
+<main class="flex-grow">
+  <!-- Seção Hero -->
+  <section class="relative flex min-h-[400px] w-full items-center justify-center bg-cover bg-center py-16 md:py-20" 
+    style="background-image: linear-gradient(rgba(10, 36, 99, 0.8), rgba(10, 36, 99, 0.8)), url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0ea?q=80&w=2000&auto=format&fit=crop');">
+    <div class="container mx-auto text-center px-4">
+      <h1 class="text-4xl md:text-5xl font-bold text-white font-serif-display mb-4">Sobre o Sistema de Biblioteca</h1>
+      <p class="text-lg text-gray-200 max-w-2xl mx-auto">
+        Conheça mais sobre o projeto desenvolvido para facilitar o gerenciamento de livros e usuários.
+      </p>
+    </div>
+  </section>
+
+  <!-- Seção de Descrição do Projeto -->
+  <section class="container mx-auto py-12 md:py-16 px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-primary dark:text-accent font-serif-display mb-4">Nosso Propósito</h2>
+        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+          Este sistema foi desenvolvido para simplificar a gestão de bibliotecas, permitindo que administradores e usuários 
+          interajam de forma prática e moderna. Aqui, é possível cadastrar novos usuários, realizar login com segurança, 
+          registrar livros e acompanhar toda a listagem de exemplares disponíveis.
+        </p>
+        <p class="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+          O projeto foi construído com o framework <strong>Django</strong> e o banco de dados <strong>MySQL</strong>, garantindo 
+          desempenho, segurança e escalabilidade. A interface é totalmente responsiva, projetada para oferecer uma 
+          experiência agradável tanto em computadores quanto em dispositivos móveis.
+        </p>
+      </div>
+
+      <div class="rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2000&auto=format&fit=crop" 
+             alt="Biblioteca moderna" 
+             class="object-cover w-full h-80 md:h-full">
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Recursos -->
+  <section class="bg-primary/5 dark:bg-primary/10 py-12 md:py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-primary dark:text-accent font-serif-display mb-8">O que o Sistema Oferece</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-background-dark p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+          <span class="material-symbols-outlined text-accent text-4xl mb-3">person_add</span>
+          <h3 class="font-bold text-lg mb-2">Cadastro de Usuários</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Registre novos usuários e permita o acesso ao sistema de forma segura e organizada.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-background-dark p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+          <span class="material-symbols-outlined text-accent text-4xl mb-3">menu_book</span>
+          <h3 class="font-bold text-lg mb-2">Gerenciamento de Livros</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Cadastre, edite e remova livros com facilidade, mantendo o catálogo sempre atualizado.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-background-dark p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+          <span class="material-symbols-outlined text-accent text-4xl mb-3">library_books</span>
+          <h3 class="font-bold text-lg mb-2">Listagem Completa</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Visualize todos os livros cadastrados com detalhes como título, autor e disponibilidade.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Desenvolvedores -->
+  <section class="container mx-auto py-12 md:py-16 px-4">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-primary dark:text-accent font-serif-display mb-4">Sobre o Desenvolvimento</h2>
+      <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+        O sistema foi desenvolvido como parte de um projeto de estudos e prática em desenvolvimento web 
+        com <strong>Django</strong> e <strong>MySQL</strong>, integrando conceitos de front-end e back-end para oferecer 
+        uma aplicação funcional, moderna e eficiente.
+      </p>
+      <p class="text-gray-500 dark:text-gray-400 italic">
+        “A leitura é a chave que abre as portas do conhecimento.” 📚
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- Rodapé -->
+<footer class="bg-primary dark:bg-gray-900 text-white mt-auto w-full">
+  <div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <div>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Biblioteca Municipal</h4>
+        <p class="text-sm text-gray-300">Rua do Conhecimento, 123,<br/>Bookville, BK 12345</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Horário de Funcionamento</h4>
+        <p class="text-sm text-gray-300">Seg - Sex: 9h - 20h<br/>Sáb - Dom: 10h - 17h</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Contato</h4>
+        <p class="text-sm text-gray-300">Email: contato@bibliotecamunicipal.com<br/>Telefone: (123) 456-7890</p>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+      <p>© 2025 Biblioteca Municipal. Todos os direitos reservados. | 
+        <a class="hover:text-accent" href="#">Política de Privacidade</a>
+      </p>
+    </div>
+  </div>
+</footer>
+{% endblock content %}

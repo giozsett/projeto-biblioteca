@@ -1,0 +1,154 @@
+{% extends '_layouts.html' %}
+
+{% block content%}
+<html class="light-dark" lang="pt-br">
+<main class="flex-grow">
+<!-- Seção Hero -->
+<section class="relative flex min-h-[480px] w-full items-center justify-center bg-cover bg-center py-16 md:py-24" style="background-image: linear-gradient(rgba(10, 36, 99, 0.7), rgba(10, 36, 99, 0.9)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&amp;w=2070&amp;auto=format&amp;fit=crop');">
+<div class="container mx-auto flex flex-col items-center gap-6 px-4 text-center">
+<h2 class="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl font-serif-display">Descubra Sua Próxima História</h2>
+<p class="max-w-2xl text-lg text-gray-200">Busque em nossa extensa coleção de livros, artigos e mídias.</p>
+<div class="w-full max-w-2xl mt-4">
+<label class="flex flex-col min-w-40 h-14 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-lg">
+<div class="text-primary flex border border-soft-gray bg-white items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-light focus:outline-0 focus:ring-0 border border-soft-gray bg-white h-full placeholder:text-soft-gray px-4 border-r-0 border-l-0 text-base" placeholder="Pesquisar por Título, Autor, ISBN..." value=""/>
+<div class="flex items-center justify-center rounded-r-lg border-l-0 border border-soft-gray bg-white pr-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-5 bg-accent text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
+<span class="truncate">Buscar</span>
+</button>
+</div>
+</div>
+</label>
+</div>
+</div>
+</section>
+
+<!-- Seção de Descoberta de Livros -->
+<section class="container mx-auto py-10 md:py-16 px-4">
+<!-- Carrossel Novidades -->
+<div>
+<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-4">Novidades</h3>
+<div class="flex overflow-x-auto pb-4 [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+<div class="flex items-stretch gap-4 md:gap-6">
+<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro Metamorfose" style="background-image: url('https://m.media-amazon.com/images/I/715JOcuqSSL._AC_UF1000,1000_QL80_.jpg');"></div>
+<div>
+<p class="font-bold">A Metamorfose</p>
+<p class="text-sm text-soft-gray">Franz Kafka</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro café tangerin" style="background-image: url('https://m.media-amazon.com/images/I/810wlHQ9F9L.jpg');"></div>
+<div>
+<p class="font-bold">Café Tangerinn</p>
+<p class="text-sm text-soft-gray">Emanuela Anechoum</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro Clarice Lispector" style="background-image: url('https://m.media-amazon.com/images/I/81WXzsT86ZL._UF1000,1000_QL80_.jpg');"></div>
+<div>
+<p class="font-bold">A Hora da Estrela</p>
+<p class="text-sm text-soft-gray">Clarice Lispector</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro O Jantar Secreto" style="background-image: url('https://m.media-amazon.com/images/I/71AeB1+8dZL._UF1000,1000_QL80_.jpg');"></div>
+<div>
+<p class="font-bold">O Jantar Secreto</p>
+<p class="text-sm text-soft-gray">Raphael Montes</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-lg min-w-48 md:min-w-60 group">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all" data-alt="Capa do livro Coreografia do Adeus" style="background-image: url('https://m.media-amazon.com/images/I/9157mzaUZ1L.jpg');"></div>
+<div>
+<p class="font-bold">Pequena Coreografia do Adeus</p>
+<p class="text-sm text-soft-gray">Aline Bei</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Seção Informações da Biblioteca -->
+<section class="bg-primary/5 dark:bg-primary/10 py-10 md:py-16">
+<div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+<!-- Coluna Esquerda: Notícias e Eventos -->
+<div class="lg:col-span-2">
+<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-6">Notícias & Eventos da Biblioteca</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card de Notícia 1 -->
+<div class="bg-background-light dark:bg-background-dark rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+<img alt="Feira de livros colorida" class="w-full h-48 object-cover" src="https://www.furg.br/arquivos/29-04-2025-Feira-do-Livro-FURG-2020.jpg"/>
+<div class="p-4">
+<p class="text-xs text-soft-gray mb-1">28 de Outubro de 2025</p>
+<h4 class="font-bold text-lg mb-2">A Feira Anual de Livros Retorna!</h4>
+<p class="text-sm text-soft-gray">Participe de uma semana de celebração literária, autores convidados e descontos exclusivos...</p>
+</div>
+</div>
+<!-- Card de Notícia 2 -->
+<div class="bg-background-light dark:bg-background-dark rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+<img alt="Crianças aprendendo em computadores na biblioteca" class="w-full h-48 object-cover" src="https://www.gov.br/mec/pt-br/assuntos/noticias/2025/junho/workshop-aborda-educacao-digital-e-midiatica-com-europeus/workshop-aborda-educacao-digital-e-midiatica-com-europeus-1/@@images/6861f948-08f2-44a7-8ee9-36dfccd45745.jpeg"/>
+<div class="p-4">
+<p class="text-xs text-soft-gray mb-1">25 de Outubro de 2025</p>
+<h4 class="font-bold text-lg mb-2">Novo Workshop de Alfabetização Digital</h4>
+<p class="text-sm text-soft-gray">Estamos animados em lançar uma nova série de workshops voltados para melhorar habilidades digitais para todas as idades...</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Coluna Direita: Links Rápidos -->
+<div>
+<h3 class="text-2xl font-bold text-primary dark:text-accent font-serif-display mb-6">Links Rápidos</h3>
+<div class="flex flex-col gap-3">
+<a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-accent">menu_book</span>
+<span class="font-medium">Ver Meus Empréstimos</span>
+</a>
+<a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-accent">desktop_windows</span>
+<span class="font-medium">Reservar um PC</span>
+</a>
+<a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-accent">local_shipping</span>
+<span class="font-medium">Empréstimo entre Bibliotecas</span>
+</a>
+<a class="flex items-center gap-3 p-4 bg-background-light dark:bg-background-dark rounded-lg shadow-sm hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-accent">support_agent</span>
+<span class="font-medium">Pergunte a um Bibliotecário</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<!-- Rodapé -->
+<footer class="bg-primary dark:bg-gray-900 text-white mt-auto w-full">
+  <div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <div>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Biblioteca Municipal</h4>
+        <p class="text-sm text-gray-300">Rua do Conhecimento, 123,<br/>Bookville, BK 12345</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Horário de Funcionamento</h4>
+        <p class="text-sm text-gray-300">Seg - Sex: 9h - 20h<br/>Sáb - Dom: 10h - 17h</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-2 font-serif-display">Contato</h4>
+        <p class="text-sm text-gray-300">Email: contato@bibliotecamunicipal.com<br/>Telefone: (123) 456-7890</p>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+      <p>© 2025 Biblioteca Municipal. Todos os direitos reservados. | <a class="hover:text-accent" href="#">Política de Privacidade</a></p>
+    </div>
+  </div>
+</footer>
+
+</div></html>
+{% endblock content%}

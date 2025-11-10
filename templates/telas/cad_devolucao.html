@@ -1,0 +1,86 @@
+{% extends '_layouts.html' %}
+
+{% block content %}
+
+<html class="light dark" lang="pt">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Registrar Devolução - Administração da Biblioteca</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                        "primary-blue": "#3B82F6",
+                        "accent-orange": "#F97316",
+                        "neutral-white": "#FFFFFF",
+                        "neutral-off-white": "#F8F9FA",
+                        "text-dark-gray": "#1F2937",
+                        "border-light-gray": "#E5E7EB",
+                        "status-green": "#10B981",
+                        "status-red": "#EF4444",
+                        "status-gray": "#6B7280"
+                    },
+                    fontFamily: { display: "Work Sans" },
+                    borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }
+                }
+            }
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-text-dark-gray dark:text-neutral-off-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+        <main class="flex-1 p-8 bg-background-light dark:bg-background-dark">
+            <div class="max-w-2xl mx-auto bg-neutral-white dark:bg-gray-800 p-8 rounded-xl shadow-md border border-border-light-gray dark:border-gray-700">
+                <h1 class="text-3xl font-black mb-6 text-text-dark-gray dark:text-neutral-off-white">Registrar Devolução</h1>
+
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        <label for="id_emprestimo" class="block text-sm font-semibold text-text-dark-gray dark:text-gray-200 mb-2">ID do Empréstimo</label>
+                        <input type="number" id="id_emprestimo" name="id_emprestimo" required
+                            class="block w-full rounded-lg border border-border-light-gray dark:border-gray-600 bg-neutral-white dark:bg-gray-900 text-text-dark-gray dark:text-neutral-off-white shadow-sm focus:ring-2 focus:ring-accent-orange focus:outline-none p-2">
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="nome_responsavel" class="block text-sm font-semibold text-text-dark-gray dark:text-gray-200 mb-2">Nome do Responsável</label>
+                        <input type="text" id="nome_responsavel" name="nome_responsavel" required
+                            class="block w-full rounded-lg border border-border-light-gray dark:border-gray-600 bg-neutral-white dark:bg-gray-900 text-text-dark-gray dark:text-neutral-off-white shadow-sm focus:ring-2 focus:ring-accent-orange focus:outline-none p-2">
+                    </div>
+
+                    <div class="flex justify-end gap-4">
+                        <a href="{% url 'emprestimos' %}" 
+                           class="px-4 py-2 rounded-lg bg-gray-500 text-white text-sm font-bold hover:bg-gray-600 transition">
+                            Cancelar
+                        </a>
+
+                        <button type="submit" 
+                                class="px-4 py-2 rounded-lg bg-accent-orange text-white text-sm font-bold hover:bg-orange-600 transition">
+                            Registrar Devolução
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
+{% endblock content %}

@@ -1,4 +1,4 @@
-{% extends '_layouts.html' %}
+
 {% block content %}
 
 <html class="light dark" lang="pt-BR">
@@ -51,20 +51,33 @@ tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#00000
 
 <!-- Título da Página -->
 <div class="flex flex-wrap justify-between gap-3 mb-8">
-<p class="text-text-charcoal dark:text-gray-200 text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Bem-vindo de Volta</p>
+<p class="text-text-charcoal dark:text-gray-200 text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Bem-vindo(a)</p>
 </div>
 
+          {% if messages %}
+          <div class="mb-4">
+            {% for message in messages %}
+            <p
+              class="text-center font-medium {% if message.tags == 'success' %}text-green-600{% else %}text-red-500{% endif %}"
+            >
+              {{ message }}
+            </p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
 <!-- Campos do Formulário -->
-<form class="flex flex-col gap-6">
+<form class="flex flex-col gap-6" method="POST" action="{% url 'login' %}">
+{% csrf_token %}
 
 <!-- Campo de Username -->
 <label class="flex flex-col w-full">
-<p class="text-text-charcoal dark:text-gray-300 text-base font-medium leading-normal pb-2">Usuário</p>
+<p class="text-text-charcoal dark:text-gray-300 text-base font-medium leading-normal pb-2">Email</p>
 <div class="flex w-full flex-1 items-stretch rounded-lg">
 <div class="text-text-charcoal/60 dark:text-gray-400 flex border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 items-center justify-center pl-4 rounded-l-lg border-r-0">
 <span class="material-symbols-outlined">person</span>
 </div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-charcoal dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-primary h-14 placeholder:text-text-charcoal/50 dark:placeholder-gray-400 p-[15px] pl-2 text-base font-normal leading-normal" placeholder="Digite seu usuário" type="text" value=""/>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-charcoal dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-primary h-14 placeholder:text-text-charcoal/50 dark:placeholder-gray-400 p-[15px] pl-2 text-base font-normal leading-normal" value="" placeholder="Digite seu email" type="text" name="email" required/>
 </div>
 </label>
 
@@ -75,7 +88,7 @@ tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#00000
 <div class="text-text-charcoal/60 dark:text-gray-400 flex border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 items-center justify-center pl-4 rounded-l-lg border-r-0">
 <span class="material-symbols-outlined">lock</span>
 </div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-charcoal dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-primary h-14 placeholder:text-text-charcoal/50 dark:placeholder-gray-400 p-[15px] pr-2 pl-2 text-base font-normal leading-normal rounded-r-none border-r-0" placeholder="Digite sua senha" type="password" value=""/>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-charcoal dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:border-primary h-14 placeholder:text-text-charcoal/50 dark:placeholder-gray-400 p-[15px] pr-2 pl-2 text-base font-normal leading-normal rounded-r-none border-r-0" value="" placeholder="Digite sua senha" type="password" name="password" required/>
 <button aria-label="Mostrar ou ocultar senha" class="text-text-charcoal/60 dark:text-gray-400 flex border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 items-center justify-center pr-4 rounded-r-lg border-l-0" type="button">
 <span class="material-symbols-outlined">visibility</span>
 </button>
@@ -84,20 +97,15 @@ tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#00000
 
 <!-- Lembrar-me & Esqueceu a Senha -->
 <div class="flex flex-wrap items-center justify-between gap-4">
-<div class="flex items-center gap-2">
-<input class="form-checkbox h-5 w-5 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700" id="remember-me" type="checkbox"/>
-<label class="text-text-charcoal dark:text-gray-300 text-sm font-medium" for="remember-me">Lembrar-me</label>
-</div>
-<a class="text-sm font-medium text-accent-gold dark:text-yellow-500 hover:underline" href="#">Esqueceu a senha?</a>
 </div>
 
 <!-- Botão de Login -->
-<button class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-800 transition-colors duration-200">
-<a class="nav-link" href="{% url 'index' %}">Entrar</a>
+<button type="submit" class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-800 transition-colors duration-200">
+    Entrar
 </button>
 
 <!-- Link de Registro -->
-<p class="text-center text-sm text-text-charcoal dark:text-gray-400">
+<p class="text-center text-sm text-text-charcoal dark:text-gray-400" style="font-size: 18px;">
 Não possui uma conta? <a class="font-medium text-accent-gold dark:text-yellow-500 hover:underline" href="{% url 'cadastrar' %}">Registrar</a>
 </p>
 

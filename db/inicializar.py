@@ -1,6 +1,6 @@
 # app_site/db/inicializar.py
 import os
-from app_site.db.conexao import conectar
+from db.conexao import conectar
 
 def executar_script(arquivo_sql):
     caminho = os.path.join(os.path.dirname(__file__), "scripts", arquivo_sql)
