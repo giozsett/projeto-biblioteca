@@ -473,22 +473,25 @@ def emprestimos(request):
     # Passa os dados dos empréstimos para o template 'emprestimos.html'
     return render(request, 'telas/emprestimos.html', {'emprestimos': emprestimos})
 
-
-#  Cadastrar data de devolução
+# Cadastrar data de devolução
 def cad_devolucao(request, id_emprestimo):
     """
     Cadastra devolução de um empréstimo chamando a procedure pr_cadastra_devolucao.
+    Pega automaticamente o usuário logado como responsável.
     """
+    # Pega o nome do usuário logado na sessão (ajuste conforme o nome usado no login)
     nome_responsavel = request.session.get('usuario_nome', 'Administrador')
 
     try:
         with connection.cursor() as cursor:
+            # Chama a procedure com o ID do empréstimo e o nome do responsável
             cursor.callproc('pr_cadastra_devolucao', [id_emprestimo, nome_responsavel])
         messages.success(request, 'Devolução registrada com sucesso!')
     except Exception as e:
         messages.error(request, f'Erro ao cadastrar devolução: {e}')
 
-    return render(request, 'telas/cad_devolucao.html', {'emprestimos': emprestimos})
+    # Retorna para a página de empréstimos, sem renderizar outra tela
+    return redirect('emprestimos')
 
 # Exclusão de empréstimo
 def excluir_emprestimo(request, id_emprestimo):

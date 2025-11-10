@@ -93,7 +93,9 @@
                             <td class="px-3 py-4 whitespace-nowrap text-sm text-right space-x-3">
                                 
                                 {% if not emprestimo.4 %}
-                                <a href="{% url 'cad_devolucao' emprestimo.0%}" class="text-green-400 hover:text-green-300">Cadastrar Devolução</a>
+                                <a href="{% url 'cad_devolucao' emprestimo.0 %}" class="text-green-400 hover:text-green-300">
+                                    Cadastrar Devolução
+                                </a>
                                 {% endif %}
                                 <a href="{% url 'editar_emprestimo' emprestimo.0 %}" class="text-blue-400 hover:text-blue-300">Editar</a>
                                 <a href="{% url 'excluir_emprestimo' emprestimo.0 %}" class="text-red-400 hover:text-red-300">Excluir</a>
