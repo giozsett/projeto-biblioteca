@@ -26,45 +26,70 @@ def valida_login(email, senha):
         return f'Erro ao validar login: {str(e)}'
 
 
-def desbloquear_usuario(email):
-    """
-    Chama a procedure pr_desbloquear_usuario
-    Retorna: status (string)
-    """
-    try:
-        with connection.cursor() as cursor:
-            cursor.callproc('pr_desbloquear_usuario', [email, 0])
-            
-            # Pega o OUT parameter
-            cursor.execute("SELECT @_pr_desbloquear_usuario_1")
-            result = cursor.fetchone()
-            return result[0] if result else 'Erro'
-    except Exception as e:
-        print(f"ERRO ao desbloquear: {e}")
-        return f'Erro: {str(e)}'
+def usuarios(request):
+    mensagem = None
 
-def trocar_senha(request):
+    # Caso o botão "Desbloquear" tenha sido clicado
+    if request.method == "POST":
+        email = request.POST.get("email")
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute("CALL pr_desbloquear_usuario(%s, @p_status)", [email])
+                cursor.execute("SELECT @p_status")
+                status = cursor.fetchone()[0]
+
+            if status == "Sucesso":
+                mensagem = f"Usuário {email} desbloqueado com sucesso!"
+            else:
+                mensagem = f"Erro ao tentar desbloquear o usuário {email}."
+        except Exception as e:
+            mensagem = f"Erro: {e}"
+
+    # Lista todos os usuários
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT nome, email, bloqueado FROM usuarios")
+        usuarios_lista = cursor.fetchall()  # [(nome, email, bloqueado), ...]
+
+    return render(request, "telas/usuarios.html", {
+        "usuarios": usuarios_lista,
+        "mensagem": mensagem
+    })
+
+# Mudar a senha do usuário
+from django.db import connection
+from django.shortcuts import render
+
+def troca_senha(request):
     if request.method == "POST":
         email = request.POST.get("email")
         senha_atual = request.POST.get("senha_atual")
         senha_nova = request.POST.get("senha_nova")
 
         try:
-            with connection.cursor() as cursor:
-                cursor.callproc("pr_troca_senha", [email, senha_atual, senha_nova, None])
-                cursor.execute("SELECT @_pr_troca_senha_3")  # índice do OUT p_status
-                resultado = cursor.fetchone()
-                status = resultado[0]
+            cursor = connection.cursor()
+
+            # Chama a procedure
+            cursor.execute("CALL pr_troca_senha(%s, %s, %s, @p_status)", [email, senha_atual, senha_nova])
+
+            # Captura o valor de saída
+            cursor.execute("SELECT @p_status")
+            status = cursor.fetchone()[0]
 
             if status == 'Sucesso':
-                return render(request, "mensagem.html", {"mensagem": "Senha alterada com sucesso!"})
+                mensagem = "Senha alterada com sucesso!"
+            elif status == 'Erro':
+                mensagem = "Senha atual incorreta!"
             else:
-                return render(request, "mensagem.html", {"mensagem": "Senha atual incorreta!"})
+                mensagem = f"Ocorreu um erro: {status}"
+
+            cursor.close()
+            return render(request, "telas/trocar_senha.html", {"mensagem": mensagem})
+
         except Exception as e:
-            return render(request, "mensagem.html", {"mensagem": f"Erro ao trocar senha: {e}"})
+            return render(request, "telas/trocar_senha.html", {"mensagem": f"Erro ao trocar senha: {e}"})
     else:
-        # Exibe o formulário de troca de senha
         return render(request, "telas/trocar_senha.html")
+
 
 
 # ==================== VIEWS DE AUTENTICAÇÃO ====================

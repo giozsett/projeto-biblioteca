@@ -52,23 +52,32 @@
             </p>
           </div>
 
-          {% if messages %}
-          <div class="mb-4">
-            {% for message in messages %}
-            <p
-              class="text-center font-medium {% if message.tags == 'success' %}text-green-600{% else %}text-red-500{% endif %}"
-            >
-              {{ message }}
-            </p>
-            {% endfor %}
+          {% if mensagem %}
+          <div class="mb-6 p-4 rounded-lg 
+                      {% if 'sucesso' in mensagem|lower %} bg-green-600 {% else %} bg-red-600 {% endif %}
+                      text-white text-center font-medium">
+              {{ mensagem }}
           </div>
           {% endif %}
+
 
           <div
             class="w-full rounded-xl bg-white dark:bg-background-dark dark:border dark:border-slate-800 p-4 shadow-sm"
           >
-            <form method="post" action="{% url 'trocar_senha' %}" class="flex flex-col gap-6">
+            <form method="post" action="{% url 'troca_senha' %}" class="flex flex-col gap-6">
               {% csrf_token %}
+
+              <div class="flex flex-col">
+              <label class="text-base font-medium pb-2" for="email">E-mail</label>
+              <input
+                name="email"
+                id="email"
+                placeholder="Digite seu e-mail"
+                type="email"
+                class="form-input w-full rounded-lg border border-slate-300 bg-background-light h-14 p-4"
+                required
+              />
+            </div>
 
               <div class="flex flex-col">
                 <label class="text-base font-medium pb-2" for="senha_atual">Senha Atual</label>

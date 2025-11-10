@@ -6,7 +6,8 @@ urlpatterns = [
     
     path('', views.login, name='login'),  # Página de login    
     path('cadastrar/', views.cadastrar, name='cadastrar'),  # Página de cadastro de usuário
-    path('trocar_senha/', views.trocar_senha, name='trocar_senha'),  # Página de troca de senha
+    path('troca_senha/', views.troca_senha, name='troca_senha'),  # Página de troca de senha
+    path('usuarios/', views.usuarios, name='usuarios'),  # Página de listagem e desbloqueio de usuários
     
     path('cad_livro/', views.cad_livro, name='cad_livro'),  # Página para cadastro de livro
     
